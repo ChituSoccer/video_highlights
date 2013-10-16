@@ -55,7 +55,7 @@ def gen_mpg_highlights(src_video, txt_file, mpg_video)
     outmp4 = File.join($tmp_folder, "#{index}.mp4")
     outmpg = File.join($tmp_folder, "#{index}.mpg")
     seg_filenames << outmpg
-    cmd_str = "#{$ffmpeg} -ss #{pair[0]} -t #{pair[1] - pair[0]} -i \"#{src_video}\" #{outmp4}"
+    cmd_str = "#{$ffmpeg} -ss #{pair[0]} -t #{pair[1] - pair[0] + 2} -i \"#{src_video}\" #{outmp4}"
     p cmd_str
     system(cmd_str) unless File.exists? outmp4
     cmd_str = "#{$ffmpeg} -i #{outmp4} -qscale:v 1 #{outmpg}"
@@ -92,7 +92,7 @@ def gen_highlights_for_multi_sessions(session_count, video_dir, txt_dir, dst_vid
       outmp4 = File.join($tmp_folder, "#{k}.mp4")
       outmpg = File.join($tmp_folder, "#{k}.mpg")
       seg_filenames << outmpg
-      cmd_str = "#{$ffmpeg} -ss #{pair[0]} -t #{pair[1] - pair[0]} -i \"#{src_video}\" #{outmp4}"
+      cmd_str = "#{$ffmpeg} -ss #{pair[0]} -t #{pair[1] - pair[0] + 2} -i \"#{src_video}\" #{outmp4}"
       p cmd_str
       system(cmd_str) unless File.exists? outmp4
       cmd_str = "#{$ffmpeg} -i #{outmp4} -qscale:v 1 #{outmpg}"
